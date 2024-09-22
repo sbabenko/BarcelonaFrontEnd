@@ -20,6 +20,7 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {
     this.chatService.startConnection();
     this.chatService.onMessageReceived((user, message) => {
+      console.log(`Message received from ${user}: ${message}`);
       this.messages.push({ user, text: message });
     });
   }

@@ -9,8 +9,11 @@ export class ChatService {
 
   constructor() {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:7189/chatHub')
-      .configureLogging(signalR.LogLevel.Information)
+      .withUrl('https://localhost:7189/chatHub', {
+        transport: signalR.HttpTransportType.WebSockets
+      })
+      .withAutomaticReconnect()
+      .configureLogging(signalR.LogLevel.Trace)
       .build();
   }
 
