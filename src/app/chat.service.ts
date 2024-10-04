@@ -22,10 +22,12 @@ export class ChatService {
   }
 
   public onMessageReceived(callback: (user: string, message: string) => void) {
-    this.hubConnection.on('ReceiveMessage', (messageObject: { user: string, message: string }) => {
-      callback(messageObject.user, messageObject.message);
-    });
+      this.hubConnection.on('ReceiveMessage', (user: string, message: string) => {
+          // Directly pass the received user and message to the callback
+          callback(user, message);
+      });
   }
+
 
   public sendMessage(user: string, message: string) {
     this.hubConnection.send('SendMessage', user, message)
