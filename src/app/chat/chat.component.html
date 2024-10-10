@@ -4,6 +4,6 @@
   <button (click)="sendMessage()">Send</button>
 </div>
 
-<div *ngFor="let message of messages">
+<div *ngFor="let message of messages" [id]="message.id">
   <strong>{{ message.user }}:</strong> {{ message.text }}
 </div>

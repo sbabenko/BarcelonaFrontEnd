@@ -33,4 +33,10 @@ export class ChatService {
     this.hubConnection.send('SendMessage', user, message)
       .catch(err => console.error('Error sending message: ', err));
   }
+
+  public sendReadReceipt(messageId: string, username: string): void {
+    this.hubConnection.invoke('SendReadReceipt', messageId, username)
+      .then(() => console.log(`Read receipt for message ${messageId} sent by ${username}`))
+      .catch(err => console.error('Error sending read receipt', err));
+  }
 }
